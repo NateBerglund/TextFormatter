@@ -46,11 +46,16 @@ namespace TextFormatter.View
                 // an infinite recursion.
                 suppressTextChangeHandling = true;
 
+                // Get the current caret position, keeping track of the paragraph and plaintext offset
+                TextPointer caretPos = MainTextBox.CaretPosition;
+                Paragraph caretParagraph = caretPos.Paragraph;
+                int offset = ComputePlaintextOffset(caretPos);
+
                 // Since we can't modify the list while we're iterating through it, we first process it to
                 // determine how each line of text needs to be broken up. We keep these in a list of Inline objects
                 // for each paragraph.
                 BlockCollection blocks = MainTextBox.Document.Blocks;
-                List<Tuple<Paragraph, List<Inline>>> insertionsToProcess = new List<Tuple<Paragraph, List<Inline>>>();
+                List<Tuple<Paragraph, List<Inline>>> replacementsToProcess = new List<Tuple<Paragraph, List<Inline>>>();
                 foreach (Block b in blocks)
                 {
                     if (b is Paragraph)
@@ -62,21 +67,21 @@ namespace TextFormatter.View
                                     p.ContentEnd);
                         string txt = tr.Text;
 
-                        insertionsToProcess.Add(Tuple.Create(p, new List<Inline>()));
+                        replacementsToProcess.Add(Tuple.Create(p, new List<Inline>()));
                         List<Tuple<string, bool>> parsedTxt = ParseContent(txt);
                         // Replace the run with set of runs, divided into red text and black text
                         for (int i = 0; i < parsedTxt.Count; ++i)
                         {
                             if (parsedTxt[i].Item2)
-                                insertionsToProcess[insertionsToProcess.Count - 1].Item2.Add(new Run(parsedTxt[i].Item1) { Foreground = Brushes.Red });
+                                replacementsToProcess[replacementsToProcess.Count - 1].Item2.Add(new Run(parsedTxt[i].Item1) { Foreground = Brushes.Red });
                             else
-                                insertionsToProcess[insertionsToProcess.Count - 1].Item2.Add(new Run(parsedTxt[i].Item1) { Foreground = Brushes.Black });
+                                replacementsToProcess[replacementsToProcess.Count - 1].Item2.Add(new Run(parsedTxt[i].Item1) { Foreground = Brushes.Black });
                         }
                     }
                 }
 
                 // Do the replacements
-                foreach (Tuple<Paragraph, List<Inline>> tpl in insertionsToProcess)
+                foreach (Tuple<Paragraph, List<Inline>> tpl in replacementsToProcess)
                 {
                     Paragraph p = tpl.Item1;
                     p.Inlines.Clear();
@@ -85,6 +90,15 @@ namespace TextFormatter.View
                     {
                         p.Inlines.Add(toAdd);
                     }
+                }
+
+                // Set the current caret position back to what it should be
+                if (null != caretParagraph)
+                {
+                    offset = ComputeAdjustedOffset(caretParagraph, offset);
+                    TextPointer newCP = caretParagraph.ContentStart.GetPositionAtOffset(offset);
+                    if (null != newCP)
+                        MainTextBox.CaretPosition = newCP;
                 }
 
                 // Now that we're done modifying the content, we can set suppressTextChangeHandling back to false.
@@ -149,6 +163,69 @@ namespace TextFormatter.View
             }
 
             return retVal;
+        }
+
+        /// <summary>
+        /// Compute the offset the caret would have if the paragraph consisted only of plain text
+        /// (no colorization). Returns -1 if there is no paragraph that scopes the current position.
+        /// </summary>
+        /// <param name="caretPos">TextPointer to the current caret position</param>
+        static private int ComputePlaintextOffset(TextPointer caretPos)
+        {
+            int offset = -1;
+            Paragraph paragraph = caretPos.Paragraph;
+            if (null != paragraph)
+            {
+                offset = paragraph.ContentStart.GetOffsetToPosition(caretPos);
+
+                // Locate which inline the caret is in
+                foreach(Inline il in paragraph.Inlines)
+                {
+                    // Stop if the caret is in the current Inline object
+                    if (caretPos.GetOffsetToPosition(il.ContentEnd) >= 0)
+                        break;
+
+                    // Each new inline object adds 2 to the caret position (1 for the end of current inline
+                    // and 1 more for the start of the next inline), so compensate by subtracting 2
+                    offset -= 2;
+                }
+            }
+
+            return offset;
+        }
+
+        /// <summary>
+        /// Compute the offset the caret should have given the paragraph and the plaintext offset.
+        /// </summary>
+        /// <param name="paragraph">Paragraph containing the caret</param>
+        /// <param name="offset">
+        /// Plaintext offset (the offset the caret would have if the paragraph
+        /// consisted only of plain text with no colorization)
+        /// </param>
+        /// <returns>Offset which should be given to the caret given the colorization of the paragraph</returns>
+        static private int ComputeAdjustedOffset(Paragraph paragraph, int offset)
+        {
+            int adjustedOffset = offset;
+
+            // Special case: If we've just deleted the last character in a paragraph (so it has no inlines left in it)
+            // the offset within the paragraph should be zero.
+            if (0 == paragraph.Inlines.Count)
+                adjustedOffset = 0;
+
+            // Locate which inline the caret is in
+            foreach (Inline il in paragraph.Inlines)
+            {
+                // Stop if the adjustedOffset will put the caret in the current Inline object
+                int endOfInlineOffset = paragraph.ContentStart.GetOffsetToPosition(il.ContentEnd);
+                if (endOfInlineOffset >= adjustedOffset)
+                    break;
+
+                // Each new inline object adds 2 to the caret position (1 for the end of current inline
+                // and 1 more for the start of the next inline)
+                adjustedOffset += 2;
+            }
+
+            return adjustedOffset;
         }
     }
 }
