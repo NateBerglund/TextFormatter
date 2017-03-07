@@ -1,21 +1,10 @@
 ﻿<Window x:Class="TextFormatter.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:view="clr-namespace:TextFormatter.View"
         Title="Text Formatter" Height="350" Width="525">
     <Grid>
-        <Label Content="Enter your text below:" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="498"/>
-        <RichTextBox HorizontalAlignment="Left" Height="240" Margin="10,41,0,0" VerticalAlignment="Top" Width="498">
-            <RichTextBox.Resources>
-                <Style TargetType="{x:Type Paragraph}">
-                    <Setter Property="Margin" Value="0"/>
-                </Style>
-            </RichTextBox.Resources>
-            <FlowDocument>
-                <Paragraph>
-                    <Run Text=""/>
-                </Paragraph>
-            </FlowDocument>
-        </RichTextBox>
+        <view:TextFormatterView x:Name = "TextFormatterViewControl"/>
 
     </Grid>
 </Window>

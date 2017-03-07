@@ -1,20 +1,20 @@
 ﻿TextFormatter
 
 
-winexe
+exe
 C#
 .cs
-C:\Users\NBerglund\Documents\GitHub\TextFormatter\TextFormatter\obj\Debug\
+C:\Users\NBerglund\Documents\PracticeProjects\TextFormatterDynamic\TextFormatter\obj\Debug\
 TextFormatter
 none
 false
 DEBUG;TRACE
-C:\Users\NBerglund\Documents\GitHub\TextFormatter\TextFormatter\App.xaml
-11151548125
+C:\Users\NBerglund\Documents\PracticeProjects\TextFormatterDynamic\TextFormatter\App.xaml
+294861856
 
-5-2017746502
+8-1389676795
 12-1401562060
-MainWindow.xaml;
+MainWindow.xaml;View\TextFormatterView.xaml;
 
 False
 

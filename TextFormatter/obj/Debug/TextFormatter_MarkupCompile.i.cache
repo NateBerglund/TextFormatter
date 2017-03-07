@@ -1,7 +1,7 @@
 ﻿TextFormatter
 
 
-winexe
+exe
 C#
 .cs
 C:\Users\NBerglund\Documents\GitHub\TextFormatter\TextFormatter\obj\Debug\
@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\NBerglund\Documents\GitHub\TextFormatter\TextFormatter\App.xaml
-11151548125
+294861856
 
-9718659651
+121346729358
 12-1401562060
-MainWindow.xaml;
+MainWindow.xaml;View\TextFormatterView.xaml;
 
-False
+True
 
