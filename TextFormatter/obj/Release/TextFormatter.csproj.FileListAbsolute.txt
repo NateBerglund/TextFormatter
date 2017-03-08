@@ -1,0 +1,17 @@
+C:\Users\NBerglund\Documents\GitHub\TextFormatter\TextFormatter\bin\Release\TextFormatter.exe.config
+C:\Users\NBerglund\Documents\GitHub\TextFormatter\TextFormatter\bin\Release\TextFormatter.exe
+C:\Users\NBerglund\Documents\GitHub\TextFormatter\TextFormatter\bin\Release\TextFormatter.pdb
+C:\Users\NBerglund\Documents\GitHub\TextFormatter\TextFormatter\obj\Release\MainWindow.g.cs
+C:\Users\NBerglund\Documents\GitHub\TextFormatter\TextFormatter\obj\Release\View\TextFormatterView.g.cs
+C:\Users\NBerglund\Documents\GitHub\TextFormatter\TextFormatter\obj\Release\App.g.cs
+C:\Users\NBerglund\Documents\GitHub\TextFormatter\TextFormatter\obj\Release\GeneratedInternalTypeHelper.g.cs
+C:\Users\NBerglund\Documents\GitHub\TextFormatter\TextFormatter\obj\Release\TextFormatter_MarkupCompile.cache
+C:\Users\NBerglund\Documents\GitHub\TextFormatter\TextFormatter\obj\Release\TextFormatter_MarkupCompile.lref
+C:\Users\NBerglund\Documents\GitHub\TextFormatter\TextFormatter\obj\Release\MainWindow.baml
+C:\Users\NBerglund\Documents\GitHub\TextFormatter\TextFormatter\obj\Release\View\TextFormatterView.baml
+C:\Users\NBerglund\Documents\GitHub\TextFormatter\TextFormatter\obj\Release\TextFormatter.g.resources
+C:\Users\NBerglund\Documents\GitHub\TextFormatter\TextFormatter\obj\Release\TextFormatter.Properties.Resources.resources
+C:\Users\NBerglund\Documents\GitHub\TextFormatter\TextFormatter\obj\Release\TextFormatter.csproj.GenerateResource.Cache
+C:\Users\NBerglund\Documents\GitHub\TextFormatter\TextFormatter\obj\Release\TextFormatter.exe
+C:\Users\NBerglund\Documents\GitHub\TextFormatter\TextFormatter\obj\Release\TextFormatter.pdb
+C:\Users\NBerglund\Documents\GitHub\TextFormatter\TextFormatter\obj\Release\TextFormatter.csprojResolveAssemblyReference.cache
