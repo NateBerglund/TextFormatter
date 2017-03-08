@@ -56,7 +56,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Model\TextElementModel.cs" />
     <Compile Include="Model\TextFormatterModel.cs" />
+    <Compile Include="Model\TextType.cs" />
     <Compile Include="ViewModel\TextFormatterViewModel.cs" />
     <Compile Include="View\TextFormatterView.xaml.cs">
       <DependentUpon>TextFormatterView.xaml</DependentUpon>
