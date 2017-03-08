@@ -1,0 +1,7 @@
+C:\Users\NBerglund\Documents\GitHub\TextFormatter\TextFormatterUnitTests\bin\Release\TextFormatterUnitTests.dll
+C:\Users\NBerglund\Documents\GitHub\TextFormatter\TextFormatterUnitTests\bin\Release\TextFormatterUnitTests.pdb
+C:\Users\NBerglund\Documents\GitHub\TextFormatter\TextFormatterUnitTests\bin\Release\TextFormatter.exe
+C:\Users\NBerglund\Documents\GitHub\TextFormatter\TextFormatterUnitTests\bin\Release\TextFormatter.pdb
+C:\Users\NBerglund\Documents\GitHub\TextFormatter\TextFormatterUnitTests\obj\Release\TextFormatterUnitTests.csprojResolveAssemblyReference.cache
+C:\Users\NBerglund\Documents\GitHub\TextFormatter\TextFormatterUnitTests\obj\Release\TextFormatterUnitTests.dll
+C:\Users\NBerglund\Documents\GitHub\TextFormatter\TextFormatterUnitTests\obj\Release\TextFormatterUnitTests.pdb
